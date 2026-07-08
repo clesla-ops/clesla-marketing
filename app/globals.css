@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  /* Base neutrals — warm-tinted near-black, executive dark-first system */
+  --color-background: oklch(0.16 0.006 60);
+  --color-foreground: oklch(0.95 0.008 80);
+
+  --color-surface: oklch(0.19 0.007 60);
+  --color-surface-2: oklch(0.22 0.008 60);
+  --color-elevated: oklch(0.24 0.008 60);
+
+  --color-muted: oklch(0.62 0.01 70);
+  --color-muted-foreground: oklch(0.7 0.012 70);
+
+  --color-border: oklch(0.28 0.008 65);
+  --color-border-strong: oklch(0.36 0.01 65);
+
+  /* Brand accent — refined amber/copper, evokes analog audio heritage */
+  --color-accent: oklch(0.78 0.14 66);
+  --color-accent-strong: oklch(0.72 0.15 55);
+  --color-accent-foreground: oklch(0.18 0.02 60);
+
+  --color-ring: oklch(0.78 0.14 66);
+
+  --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+
+  --radius: 0.625rem;
+
+  --breakpoint-xs: 24rem;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-accent-foreground);
+  }
+}
+
+@utility container-page {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 80rem;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .container-page {
+    padding-inline: 2rem;
+  }
+}
+
+/* Subtle grid texture for enterprise surfaces */
+@utility grid-texture {
+  background-image:
+    linear-gradient(to right, color-mix(in oklch, var(--color-border) 55%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklch, var(--color-border) 55%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+@utility hairline {
+  border-color: color-mix(in oklch, var(--color-border-strong) 90%, transparent);
+}
